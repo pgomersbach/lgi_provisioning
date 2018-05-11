@@ -57,3 +57,5 @@ sudo unzip -o -q /tmp/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/loc
 curl https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip -s -o /tmp/packer_${PACKER_VERSION}_linux_amd64.zip
 sudo unzip -o -q /tmp/packer_${PACKER_VERSION}_linux_amd64.zip -d /usr/local/bin/
 
+# install ansible roles
+ansible-galaxy install andrewrothstein.java-oracle-jre
