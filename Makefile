@@ -22,4 +22,5 @@ ifndef AWS_SECRET_ACCESS_KEY
 	@echo "AWS_SECRET_ACCESS_KEY not defined"
 	@exit 1
 endif
-	packer validate packer.json
+	@packer validate packer.json
+	@ansible-playbook -i 'localhost,' ansible-playbook.yml --syntax-check
