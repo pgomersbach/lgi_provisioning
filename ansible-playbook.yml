@@ -2,3 +2,10 @@
   gather_facts: yes
   roles:
   - { role: andrewrothstein.java-oracle-jre }
+  tasks:
+  - name: install httpd
+    shell: yum install -y -q httpd
+    become: yes
+  - name: start httpd
+    shell: systemctl enable httpd
+    become: yes

@@ -24,3 +24,5 @@ ifndef AWS_SECRET_ACCESS_KEY
 endif
 	@packer validate packer.json
 	@ansible-playbook -i 'localhost,' ansible-playbook.yml --syntax-check
+	@TF_VAR_access_key="${AWS_ACCESS_KEY_ID}"  TF_VAR_secret_key="${AWS_SECRET_ACCESS_KEY}" terraform validate
+

@@ -38,6 +38,17 @@ else
     exit 1
 fi 
 
+# install terraform
+curl https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -s -o /tmp/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+sudo unzip -o -q /tmp/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin/
+
+# install packer
+curl https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip -s -o /tmp/packer_${PACKER_VERSION}_linux_amd64.zip
+sudo unzip -o -q /tmp/packer_${PACKER_VERSION}_linux_amd64.zip -d /usr/local/bin/
+
+# install ansible roles
+ansible-galaxy install andrewrothstein.java-oracle-jre
+
 # get or update repo
 if [ -d $PROVISIONING_REPO ]; then
   echo "Update repo"
@@ -49,13 +60,5 @@ else
   cd $PROVISIONING_REPO
 fi
 
-# install terraform
-curl https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -s -o /tmp/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-sudo unzip -o -q /tmp/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin/
-
-# install packer
-curl https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip -s -o /tmp/packer_${PACKER_VERSION}_linux_amd64.zip
-sudo unzip -o -q /tmp/packer_${PACKER_VERSION}_linux_amd64.zip -d /usr/local/bin/
-
-# install ansible roles
-ansible-galaxy install andrewrothstein.java-oracle-jre
+# init terraform
+terraform init
