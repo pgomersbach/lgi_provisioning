@@ -14,3 +14,15 @@ resource "aws_security_group" "app_websg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+resource "aws_security_group" "mon_sg" {
+  name = "securitgroup_for_mon_sg"
+  vpc_id      = "${module.vpc.vpc_id}"
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+

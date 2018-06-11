@@ -14,7 +14,7 @@ resource "aws_instance" "web1" {
 resource "aws_network_interface" "secif1" {
   subnet_id       = "${element(module.vpc.private_subnets, 0)}"
   private_ips     = ["10.0.1.4"]
-#  security_groups = ["${aws_security_group.web.id}"]
+  security_groups = ["${aws_security_group.mon_sg.id}"]
   attachment {
     instance     = "${aws_instance.web1.id}"
     device_index = 1
