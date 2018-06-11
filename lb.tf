@@ -10,6 +10,11 @@ resource "aws_lb_target_group" "testexternal" {
       unhealthy_threshold = 10
       interval            = 10
   }
+  tags = {
+    Terraform = "true"
+    Environment = "${var.environment}"
+    Name = "lb_target_group"
+  }
 }
 
 resource "aws_lb" "nlb1" {
@@ -24,7 +29,9 @@ resource "aws_lb" "nlb1" {
     subnet_id    = "${element(module.vpc.public_subnets, 1)}"
   }
   tags {
-    Name = "terraform - elb - app"
+    Terraform = "true"
+    Environment = "${var.environment}"
+    Name = "terraform - nlb - app"
   }
 }
 

@@ -1,12 +1,12 @@
 resource "aws_instance" "web1" {
   ami           = "${data.aws_ami.app_ami.id}"
-  instance_type = "t2.micro"
+  instance_type = "${var.api_instance_type}"
   subnet_id = "${element(module.vpc.public_subnets, 0)}"
   vpc_security_group_ids  = ["${aws_security_group.app_websg.id}"]
-  availability_zone = "eu-central-1a"
+  availability_zone = "${var.region}a"
   tags = {
     Terraform = "true"
-    Environment = "test"
+    Environment = "${var.environment}"
     Name = "api-1"
   }
 }
@@ -18,6 +18,11 @@ resource "aws_network_interface" "secif1" {
   attachment {
     instance     = "${aws_instance.web1.id}"
     device_index = 1
+  }
+  tags = {
+    Terraform = "true"
+    Environment = "${var.environment}"
+    Name = "api-if1"
   }
 }
 
