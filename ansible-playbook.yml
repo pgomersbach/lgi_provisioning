@@ -24,11 +24,29 @@
       dest: /tmp
       remote_src: yes
   - name: install awscli
-    shell: /tmp//awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+    shell: /tmp/awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
     become: yes
   - name: install gettag.sh
     copy:
       src: files/gettag.sh
       dest: /usr/local/bin/gettag.sh
       mode: 0755
+    become: yes
+  - name: download and extract cloudwatch agent
+    unarchive:
+      src: https://s3.amazonaws.com/amazoncloudwatch-agent/linux/amd64/latest/AmazonCloudWatchAgent.zip
+      dest: /tmp
+      remote_src: yes
+  - name: install cloudwatch agent
+    shell: ./install.sh
+    args:
+      chdir: /tmp
+    become: yes
+  - name: install cloudwatch agent config file
+    copy:
+      src: files/amazon-cloudwatch-agent.json
+      dest: /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json
+    become: yes
+  - name: start cloudwatch agent
+    shell: /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json -s
     become: yes
