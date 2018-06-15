@@ -1,12 +1,25 @@
 variable "access_key" {}
 variable "secret_key" {}
+variable "jump_username" {
+    default = "ec2-user"
+}
+variable "app_username" {
+    default = "ec2-user"
+}
+variable "ssh_key_file" {
+    default = "~/.ssh/id_rsa.terraform"
+}
 variable "region" {
     description = "EC2 Region for the VPC"
     default = "eu-central-1"
 }
-variable "ami_name" {
+variable "app_ami_name" {
     description = "Name of the ami to use"
-    default = "packer-example*"
+    default = "packer-app*"
+}
+variable "jump_ami_name" {
+    description = "Name of the ami to use"
+    default = "packer-jump*"
 }
 variable "ami_owner" {
     description = "Owner of the ami"
@@ -14,6 +27,10 @@ variable "ami_owner" {
 }
 variable "api_instance_type" {
     description = "Instance type of api instances"
+    default = "t2.micro"
+}
+variable "jump_instance_type" {
+    description = "Instance type of jumpserver instances"
     default = "t2.micro"
 }
 variable "environment" {

@@ -1,22 +1,10 @@
 - hosts: all
   gather_facts: yes
-#  roles:
-#  - { role: andrewrothstein.java-oracle-jre }
   tasks:
   - name: install unzip
     yum:
       name: unzip
       state: present
-    become: yes
-  - name: install httpd
-    yum:
-      name: httpd
-      state: present
-    become: yes
-  - name: enable httpd
-    service:
-      name: httpd
-      enabled: yes
     become: yes
   - name: download and extract awscli
     unarchive: 
@@ -44,7 +32,7 @@
     become: yes
   - name: install cloudwatch agent config file
     copy:
-      src: files/amazon-cloudwatch-agent.json
+      src: files/amazon-cloudwatch-agent-jump.json
       dest: /opt/aws/amazon-cloudwatch-agent/bin/config.json
     become: yes
   - name: start cloudwatch agent
