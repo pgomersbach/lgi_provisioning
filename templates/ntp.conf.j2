@@ -1,0 +1,7 @@
+{% for server in ntp_servers %}
+server {{ server }} prefer
+{% endfor %}
+server 169.254.169.123 stratum 10
+
+disable monitor
+driftfile /var/lib/ntp/drift

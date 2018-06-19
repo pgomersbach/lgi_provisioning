@@ -6,6 +6,33 @@
       name: unzip
       state: present
     become: yes
+  - name: disable chronyd service
+    service:
+      name: chronyd
+      state: stopped
+      enabled: no
+    become: yes
+  - name: install ntp
+    yum:
+      name: ntp
+      state: present
+    become: yes
+  - name: Write ntp.conf
+    vars:
+      ntp_servers:
+        - 0.pool.ntp.org
+        - 1.pool.ntp.org
+        - 2.pool.ntp.org
+    template:
+      src: "ntp.conf.j2"
+      dest: "/etc/ntp.conf"
+      mode: 0644
+    become: yes
+  - name: enable ntpd
+    service:
+      name: ntpd
+      enabled: yes
+    become: yes
   - name: download and extract awscli
     unarchive: 
       src: https://s3.amazonaws.com/aws-cli/awscli-bundle.zip
