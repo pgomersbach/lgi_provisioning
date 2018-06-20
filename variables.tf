@@ -49,3 +49,10 @@ variable "vpc_private_subnets" {
 variable "vpc_public_subnets" {
     default = ["10.0.3.0/28", "10.0.3.16/28"]
 }
+terraform {
+  backend "s3" {
+    bucket = "terraform-state-backend"
+    key    = "tf.tfstate"
+    region = "eu-central-1"
+  }
+}
