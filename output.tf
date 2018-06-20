@@ -19,5 +19,5 @@ output "jumphost" {
   value = "${aws_instance.jump1.public_ip}"
 }
 output "SSH connect string app1 server" {
-    value = "ssh -i ${var.ssh_key_file} ${var.app_username}@${aws_instance.web1.private_ip} -o 'ProxyCommand ssh -A -i ${var.ssh_key_file} ${var.jump_username}@${aws_instance.jump1.public_ip} -W ${aws_instance.web1.private_ip}:22' "
+    value = "ssh -i ${var.ssh_key_file} ${var.app_username}@${aws_instance.api.0.private_ip} -o 'ProxyCommand ssh -A -i ${var.ssh_key_file} ${var.jump_username}@${aws_instance.jump1.public_ip} -W ${aws_instance.api.0.private_ip}:22' "
 }

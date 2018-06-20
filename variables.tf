@@ -25,6 +25,10 @@ variable "ami_owner" {
     description = "Owner of the ami"
     default = "656878657103"
 }
+variable "api_instance_count" {
+    description = "Instance type of api instances"
+    default = 1
+}
 variable "api_instance_type" {
     description = "Instance type of api instances"
     default = "t2.micro"
