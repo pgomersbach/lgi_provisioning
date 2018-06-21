@@ -2,7 +2,7 @@ data "aws_availability_zones" "allzones" {}
 
 module "vpc" {
   source                 = "terraform-aws-modules/vpc/aws"
-  name                   = "my-vpc"
+  name                   = "akana-vpc-${var.environment}"
   cidr                   = "${var.vpc_cidr}"
   azs                    = "${var.vpc_azs}"
   private_subnets        = "${var.vpc_private_subnets}"

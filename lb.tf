@@ -36,7 +36,7 @@ resource "aws_lb" "nlb1" {
   tags {
     Terraform   = "true"
     Environment = "${var.environment}"
-    Name        = "terraform - nlb - app"
+    Name        = "net_lb"
   }
 }
 

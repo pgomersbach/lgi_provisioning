@@ -22,6 +22,11 @@ resource "aws_security_group" "app_websg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  tags = {
+    Terraform   = "true"
+    Environment = "${var.environment}"
+  }
 }
 
 resource "aws_security_group" "mon_sg" {
@@ -52,5 +57,10 @@ resource "aws_security_group" "jump_sg" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Terraform   = "true"
+    Environment = "${var.environment}"
   }
 }
