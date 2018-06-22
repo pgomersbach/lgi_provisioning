@@ -6,6 +6,32 @@
       name: unzip
       state: present
     become: yes
+  - name: install git
+    yum:
+      name: git
+      state: present
+    become: yes
+  - name: install epel
+    yum:
+      name: https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-11.noarch.rpm
+    become: yes
+  - name: install python-pip
+    yum:
+      name: python-pip
+      state: present
+    become: yes
+  - name: download Scout2
+    git:
+      repo: 'https://github.com/nccgroup/Scout2'
+      dest: /tmp/Scout2
+  - name: install Scout2
+    shell: cd /tmp/Scout2 && pip install -r requirements.txt && python setup.py install
+    become: yes
+  - name: crontab for Scout2
+    cron:
+      name: "Scout2"
+      special_time: hourly
+      job: "/usr/bin/Scout2 --force --no-browser"
   - name: disable chronyd service
     service:
       name: chronyd

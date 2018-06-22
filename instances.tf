@@ -33,7 +33,7 @@ resource "aws_instance" "jump1" {
   subnet_id              = "${element(module.vpc.public_subnets, 0)}"
   vpc_security_group_ids = ["${aws_security_group.jump_sg.id}"]
   availability_zone      = "${var.region}a"
-  iam_instance_profile   = "${aws_iam_instance_profile.cloudwatch_profile.name}"
+  iam_instance_profile   = "${aws_iam_instance_profile.scout2_profile.name}"
 
   tags = {
     Terraform   = "true"

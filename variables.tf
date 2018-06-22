@@ -45,7 +45,7 @@ variable "api_instance_type" {
 
 variable "jump_instance_type" {
   description = "Instance type of jumpserver instances"
-  default     = "t2.micro"
+  default     = "t2.medium"
 }
 
 variable "environment" {
