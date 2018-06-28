@@ -1,6 +1,11 @@
 variable "access_key" {}
 variable "secret_key" {}
 
+variable "hosted_zone" {
+  description = "predefined hosted zone"
+  default     = "api.cloud.libertyglobal.upc.biz"
+}
+
 variable "jump_username" {
   default = "ec2-user"
 }
@@ -30,7 +35,7 @@ variable "jump_ami_name" {
 
 variable "ami_owner" {
   description = "Owner of the ami"
-  default     = "656878657103"
+  default     = "536449617726"
 }
 
 variable "api_instance_count" {
@@ -67,12 +72,4 @@ variable "vpc_private_subnets" {
 
 variable "vpc_public_subnets" {
   default = ["10.0.3.0/28", "10.0.3.16/28"]
-}
-
-terraform {
-  backend "s3" {
-    bucket = "terraform-state-backend"
-    key    = "tf.tfstate"
-    region = "eu-central-1"
-  }
 }

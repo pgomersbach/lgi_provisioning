@@ -18,6 +18,11 @@ output "lb_public" {
   value       = "${aws_lb.nlb1.dns_name}"
 }
 
+output "dns_alias" {
+  description = "DNS alias for API"
+  value       = "${var.environment}.${data.aws_route53_zone.selected.name}"
+}
+
 output "jumphost" {
   description = "Jump server address"
   value       = "${aws_instance.jump1.public_ip}"
