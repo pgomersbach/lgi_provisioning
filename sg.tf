@@ -64,3 +64,20 @@ resource "aws_security_group" "jump_sg" {
     Environment = "${var.environment}"
   }
 }
+
+resource "aws_security_group" "rapid7_sg" {
+  name   = "securitgroup_for_rapid7"
+  vpc_id = "${module.vpc.vpc_id}"
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Terraform   = "true"
+    Environment = "${var.environment}"
+  }
+}

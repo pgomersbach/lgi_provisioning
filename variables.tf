@@ -33,13 +33,38 @@ variable "jump_ami_name" {
   default     = "packer-jump*"
 }
 
+variable "rapid7_ami_name" {
+  description = "Name of the rapid7 ami"
+  default     = "nexpose-pre-authorized-engine-*"
+}
+
 variable "ami_owner" {
   description = "Owner of the ami"
   default     = "536449617726"
 }
 
+variable "rapid7_ami_owner" {
+  description = "Owner of the ami"
+  default     = "679593333241"
+}
+
+variable "rapid7_console_address" {
+  description = "Rapid 7 console"
+  default     = "r7console"
+}
+
+variable "rapid7_console_port" {
+  description = "Rapid 7 console port"
+  default     = "40815"
+}
+
+variable "rapid7_console_secret" {
+  description = "Rapid 7 console secret"
+  default     = "changeme"
+}
+
 variable "api_instance_count" {
-  description = "Instance type of api instances"
+  description = "Instance count of api instances"
   default     = 1
 }
 
@@ -51,6 +76,11 @@ variable "api_instance_type" {
 variable "jump_instance_type" {
   description = "Instance type of jumpserver instances"
   default     = "t2.medium"
+}
+
+variable "rapid7_instance_type" {
+  description = "Instance type of rapid7 instances"
+  default     = "t2.large"
 }
 
 variable "environment" {

@@ -41,3 +41,28 @@ resource "aws_instance" "jump1" {
     Name        = "jumpserver"
   }
 }
+
+data "template_file" "init_rapid7" {
+  template = "${file("init_rapid7.tpl")}"
+
+  vars {
+    rapid7_console_address = "${var.rapid7_console_address}"
+    rapid7_console_port    = "${var.rapid7_console_port}"
+    rapid7_console_secret  = "${var.rapid7_console_secret}"
+  }
+}
+
+resource "aws_instance" "rapid7" {
+  ami                    = "${data.aws_ami.rapid7_ami.id}"
+  instance_type          = "${var.rapid7_instance_type}"
+  subnet_id              = "${element(module.vpc.private_subnets, 0)}"
+  vpc_security_group_ids = ["${aws_security_group.rapid7_sg.id}"]
+  availability_zone      = "${var.region}a"
+  user_data              = "${data.template_file.init_rapid7.rendered}"
+
+  tags = {
+    Terraform   = "true"
+    Environment = "${var.environment}"
+    Name        = "rapid7"
+  }
+}
