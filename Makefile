@@ -34,6 +34,8 @@ endif
 	@ansible-playbook -i 'localhost,' ansible-jump.yml --syntax-check
 	@TF_VAR_access_key="${AWS_ACCESS_KEY_ID}"  TF_VAR_secret_key="${AWS_SECRET_ACCESS_KEY}" terraform validate
 
+help:
+	@more README.md
 keys:
 ifeq (,$(wildcard ~/.ssh/id_rsa.terraform))
 	@ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa.terraform
