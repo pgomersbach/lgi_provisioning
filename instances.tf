@@ -17,7 +17,7 @@ resource "aws_instance" "api" {
 
 resource "aws_lb_target_group_attachment" "externallb" {
   count            = "${var.api_instance_count}"
-  target_group_arn = "${aws_lb_target_group.testexternal.arn}"
+  target_group_arn = "${aws_lb_target_group.apiexternal.arn}"
   target_id        = "${element(aws_instance.api.*.private_ip, count.index)}"
   port             = 80
 

@@ -1,5 +1,5 @@
-resource "aws_lb_target_group" "testexternal" {
-  name        = "testexternal"
+resource "aws_lb_target_group" "apiexternal" {
+  name        = "apiexternal"
   protocol    = "TCP"
   port        = 80
   vpc_id      = "${module.vpc.vpc_id}"
@@ -40,13 +40,13 @@ resource "aws_lb" "nlb1" {
   }
 }
 
-resource "aws_lb_listener" "testexternal" {
+resource "aws_lb_listener" "apiexternal" {
   load_balancer_arn = "${aws_lb.nlb1.arn}"
   protocol          = "TCP"
   port              = "80"
 
   default_action {
-    target_group_arn = "${aws_lb_target_group.testexternal.arn}"
+    target_group_arn = "${aws_lb_target_group.apiexternal.arn}"
     type             = "forward"
   }
 }
