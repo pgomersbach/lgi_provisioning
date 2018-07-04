@@ -12,6 +12,10 @@
 						"log_group_name": "audit"
 					},
                                         {
+                                                "file_path": "/var/log/secure",
+                                                "log_group_name": "secure"
+                                        },
+                                        {
                                                 "file_path": "/var/log/httpd/error_log",
                                                 "log_group_name": "http.error"
                                         },

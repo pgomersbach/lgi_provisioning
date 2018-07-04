@@ -10,7 +10,11 @@
 					{
 						"file_path": "/var/log/audit/audit.log",
 						"log_group_name": "audit"
-					}
+					},
+                                        {
+                                                "file_path": "/var/log/secure",
+                                                "log_group_name": "secure"
+                                        }
 				]
 			}
 		}
