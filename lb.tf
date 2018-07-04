@@ -7,8 +7,8 @@ resource "aws_lb_target_group" "apiexternal" {
 
   health_check {
     protocol            = "TCP"
-    healthy_threshold   = 10
-    unhealthy_threshold = 10
+    healthy_threshold   = 2
+    unhealthy_threshold = 2
     interval            = 10
   }
 
