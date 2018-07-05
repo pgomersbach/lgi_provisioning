@@ -18,7 +18,7 @@ function provision_rhel() {
     # install dependencies
     sudo yum install -y -q https://dl.fedoraproject.org/pub/epel/epel-release-latest-${RH_MAJOR}.noarch.rpm 2>/dev/null
     sudo yum update -y -q
-    sudo yum install -y -q git ansible unzip make
+    sudo yum install -y -q git ansible unzip make graphviz
 }
 
 # check os and release
