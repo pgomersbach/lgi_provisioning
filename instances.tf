@@ -3,10 +3,10 @@ resource "aws_instance" "api" {
   instance_type          = "${var.api_instance_type}"
   count                  = "${var.api_instance_count}"
   key_name               = "${aws_key_pair.terraform.key_name}"
-  subnet_id              = "${element(module.vpc.public_subnets, 0)}"
+  subnet_id              = "${element(module.vpc.public_subnets, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.app_websg.id}"]
-  availability_zone      = "${var.region}a"
-  iam_instance_profile   = "${aws_iam_instance_profile.cloudwatch_profile.name}"
+
+  iam_instance_profile = "${aws_iam_instance_profile.cloudwatch_profile.name}"
 
   tags = {
     Terraform   = "true"
@@ -30,9 +30,8 @@ resource "aws_instance" "jump1" {
   ami                    = "${data.aws_ami.jump_ami.id}"
   instance_type          = "${var.jump_instance_type}"
   key_name               = "${aws_key_pair.terraform.key_name}"
-  subnet_id              = "${element(module.vpc.public_subnets, 0)}"
+  subnet_id              = "${element(module.vpc.public_subnets, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.jump_sg.id}"]
-  availability_zone      = "${var.region}a"
   iam_instance_profile   = "${aws_iam_instance_profile.scout2_profile.name}"
 
   tags = {
@@ -57,7 +56,6 @@ resource "aws_instance" "rapid7" {
   instance_type          = "${var.rapid7_instance_type}"
   subnet_id              = "${element(module.vpc.private_subnets, 0)}"
   vpc_security_group_ids = ["${aws_security_group.rapid7_sg.id}"]
-  availability_zone      = "${var.region}a"
   user_data              = "${data.template_file.init_rapid7.rendered}"
 
   tags = {
