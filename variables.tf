@@ -3,6 +3,16 @@ variable "access_key" {}
 
 variable "secret_key" {}
 
+##### splunk settings #####
+variable "hec_endpoint" {
+    description = "splunk hec endpoin"
+    default               = "https://http-inputs-mydomain.splunkcloud.com:443"
+}
+
+variable "hec_token" {
+    description = "splunk hec token"
+    default                  = "51D4DA16-C61B-4F5F-8EC7-ED4301342A4A"
+}
 ##### rapid7 scan engine settings #####
 variable "rapid7_console_address" {
   description = "Rapid 7 console address"
