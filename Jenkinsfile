@@ -24,9 +24,8 @@ node {
       }
       stage('Documentation') {
          sh '$WORKSPACE/terraform-docs markdown ./ > TF_documentation.md'
-         sh 'pandoc-2.2.2.1/bin/pandoc TF_documentation.md -f markdown -t html -s -o doc/TF_documentation.html'
+         sh 'pandoc-2.2.2.1/bin/pandoc TF_documentation.md --quiet -f markdown -t html -s -o doc/TF_documentation.html'
          publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: false, reportDir: 'doc', reportFiles: 'TF_documentation.html', reportName: 'HTML Documentation'])
-         sh '$WORKSPACE/terraform graph | dot -Tpng > TF_dependencie_graph.png'
       }
       withEnv(['OS_AUTH_URL=https://access.openstack.rely.nl:5000/v2.0', 'OS_TENANT_ID=10593dbf4f8d4296a25cf942f0567050', 'OS_TENANT_NAME=lab', 'OS_PROJECT_NAME=lab', 'OS_REGION_NAME=RegionOne']) {
          withCredentials([usernamePassword(credentialsId: 'OS_CERT', passwordVariable: 'TF_VAR_password', usernameVariable: 'TF_VAR_user_name')]) {
