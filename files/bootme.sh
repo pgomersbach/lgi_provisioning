@@ -1,3 +1,8 @@
+#!/bin/bash
+
+# comment out below line to run in verbose mode
+#set -v
+
 PROVISIONING_REPO=lgi_provisioning
 REPO_PROVIDER=https://github.com/pgomersbach
 OS_MAJOR=7
