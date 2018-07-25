@@ -17,7 +17,7 @@ node {
          sh 'chmod +x $WORKSPACE/terraform-docs'
       }
       stage('Code quality') {
-         sh 'echo "cq placeholder"'
+         sh 'echo placeholder'
          // sh '$WORKSPACE/terraform validate > TF_validate.log'
       }
       stage('Documentation') {
