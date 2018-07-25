@@ -10,7 +10,7 @@ node {
       stage('Dependencies') {
          sh 'cd $WORKSPACE'
          sh 'mkdir -p doc'
-         sh 'curl https://releases.hashicorp.com/terraform/0.11.7/terraform_0.11.7_linux_amd64.zip -s -o /tmp/terraform_0.11.7_linux_amd64.zip
+         sh 'curl https://releases.hashicorp.com/terraform/0.11.7/terraform_0.11.7_linux_amd64.zip -s -o /tmp/terraform_0.11.7_linux_amd64.zip'
       }
       stage('Code quality') {
          sh '/usr/local/bin/terraform validate > TF_validate.log'
