@@ -2,7 +2,7 @@ PROVISIONING_REPO=lgi_provisioning
 REPO_PROVIDER=https://github.com/pgomersbach
 OS_MAJOR=7
 TERRAFORM_VERSION=0.11.7
-PACKER_VERSION=1.2.3
+PACKER_VERSION=1.2.5
 
 ## Code start ##
 # check root
