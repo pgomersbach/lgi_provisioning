@@ -20,8 +20,8 @@ resource "aws_kinesis_firehose_delivery_stream" "test_stream" {
 }
 
 resource "aws_s3_bucket" "akana-tf-splunk" {
-  bucket = "akana-tf-splunk"
-  acl    = "private"
+  bucket        = "akana-tf-splunk"
+  acl           = "private"
   force_destroy = true
 }
 
