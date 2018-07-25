@@ -13,7 +13,7 @@ node {
          sh 'curl https://releases.hashicorp.com/terraform/0.11.7/terraform_0.11.7_linux_amd64.zip -s -o /tmp/terraform_0.11.7_linux_amd64.zip'
          sh 'unzip -o -q /tmp/terraform_0.11.7_linux_amd64.zip -d $WORKSPACE'
          sh '$WORKSPACE/terraform init'
-         sh 'curl https://github.com/segmentio/terraform-docs/releases/download/v0.3.0/terraform-docs_linux_amd64 -s -o $WORKSPACE/terraform-docs'
+         sh 'curl https://github.com/segmentio/terraform-docs/releases/download/v0.3.0/terraform-docs_linux_amd64 -L -s -o $WORKSPACE/terraform-docs'
       }
       stage('Code quality') {
          // sh '$WORKSPACE/terraform validate > TF_validate.log'
