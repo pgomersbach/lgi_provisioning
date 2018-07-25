@@ -57,8 +57,16 @@ tf_plan:
 
 tf_apply:
 	@TF_VAR_access_key="${AWS_ACCESS_KEY_ID}"  TF_VAR_secret_key="${AWS_SECRET_ACCESS_KEY}" terraform validate
+ifeq ($(force),yes)
+	@TF_VAR_access_key="${AWS_ACCESS_KEY_ID}"  TF_VAR_secret_key="${AWS_SECRET_ACCESS_KEY}" terraform apply -auto-approve
+else
 	@TF_VAR_access_key="${AWS_ACCESS_KEY_ID}"  TF_VAR_secret_key="${AWS_SECRET_ACCESS_KEY}" terraform apply
+endif
 
 tf_destroy:
+ifeq ($(force),yes)
+	@TF_VAR_access_key="${AWS_ACCESS_KEY_ID}"  TF_VAR_secret_key="${AWS_SECRET_ACCESS_KEY}" terraform destroy -auto-approve
+else
 	@TF_VAR_access_key="${AWS_ACCESS_KEY_ID}"  TF_VAR_secret_key="${AWS_SECRET_ACCESS_KEY}" terraform destroy
+endif
 
