@@ -14,8 +14,10 @@ node {
          sh 'unzip -o -q /tmp/terraform_0.11.7_linux_amd64.zip -d $WORKSPACE'
          sh '$WORKSPACE/terraform init'
          sh 'curl https://github.com/segmentio/terraform-docs/releases/download/v0.3.0/terraform-docs_linux_amd64 -L -s -o $WORKSPACE/terraform-docs'
+         sh 'chmod +x $WORKSPACE/terraform-docs'
       }
       stage('Code quality') {
+         sh 'echo "cq placeholder"'
          // sh '$WORKSPACE/terraform validate > TF_validate.log'
       }
       stage('Documentation') {
