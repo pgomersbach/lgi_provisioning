@@ -12,12 +12,14 @@ node {
          sh 'mkdir -p doc'
          sh 'curl https://releases.hashicorp.com/terraform/0.11.7/terraform_0.11.7_linux_amd64.zip -s -o /tmp/terraform_0.11.7_linux_amd64.zip'
          sh 'unzip -o -q /tmp/terraform_0.11.7_linux_amd64.zip -d $WORKSPACE'
+         sh '$WORKSPACE/terraform init'
+         sh 'curl https://github.com/segmentio/terraform-docs/releases/download/v0.3.0/terraform-docs_linux_amd64 -s -o $WORKSPACE/terraform-docs'
       }
       stage('Code quality') {
          sh '$WORKSPACE/terraform validate > TF_validate.log'
       }
       stage('Documentation') {
-         sh '/usr/local/bin/terraform-docs markdown ./ > TF_documentation.md'
+         sh '$WORKSPACE/terraform-docs markdown ./ > TF_documentation.md'
          sh 'pandoc TF_documentation.md -f markdown -t html -s -o doc/TF_documentation.html'
          publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: false, reportDir: 'doc', reportFiles: 'TF_documentation.html', reportName: 'HTML Documentation'])
          sh 'terraform graph | dot -Tpng > TF_dependencie_graph.png'
