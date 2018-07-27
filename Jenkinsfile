@@ -53,8 +53,7 @@ pipeline {
       steps {
         sh '$WORKSPACE/terraform-docs markdown ./ > TF_documentation.md'
         sh 'pandoc-2.2.2.1/bin/pandoc TF_documentation.md --quiet -f markdown -t html -s -o doc/TF_documentation.html'
-        publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: false, reportDir: 'doc', reportFiles: 'TF_documentatio
-n.html', reportName: 'HTML Documentation'])
+        publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: false, reportDir: 'doc', reportFiles: 'TF_documentation.html', reportName: 'HTML Documentation'])
       }
     }
   }
