@@ -30,5 +30,24 @@ pipeline {
         }
       }
     }
+    stage('Code quality TF') {
+      parallel {
+        stage('Code quality TF') {
+          steps {
+            echo 'placeholder'
+          }
+        }
+        stage('Code quality packer') {
+          steps {
+            echo 'place holder'
+          }
+        }
+        stage('Code quality ansible') {
+          steps {
+            echo 'placeholder'
+          }
+        }
+      }
+    }
   }
 }
