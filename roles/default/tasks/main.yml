@@ -57,13 +57,13 @@
     become: yes
   - name: install cloudwatch agent config file specific to 'jump' host
     copy:
-      src: amazon-cloudwatch-agent-jump.json"
+      src: amazon-cloudwatch-agent-jump.json
       dest: /opt/aws/amazon-cloudwatch-agent/bin/config.json
     when: hosttype == 'jump'
     become: yes
   - name: install cloudwatch agent config file specific to 'akana network directors(nd)'
     copy:
-      src: amazon-cloudwatch-agent-app.json"
+      src: amazon-cloudwatch-agent-app.json
       dest: /opt/aws/amazon-cloudwatch-agent/bin/config.json
     when: hosttype == 'nd'
     become: yes
